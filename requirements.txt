@@ -89,3 +89,5 @@ xz=5.2.5=h7b6447c_0
 zipp=3.7.0=pyhd3eb1b0_0
 zlib=1.2.11=h7f8727e_4
 zstd=1.4.9=haebb681_0
+
+pandas~=1.4.1

@@ -1,15 +1,11 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import pandas as pd
 import numpy as np
 from typing import List, Dict
-
-
-# In[2]:
+from sklearn.impute import KNNImputer
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_absolute_error
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.impute import SimpleImputer
 
 
 def read_file(path:str, cols:List[str]=None, col_types:Dict[str, str]=None) -> pd.DataFrame:
@@ -32,13 +28,6 @@ col_type = {
 }
 
 df = read_file('houses_data.csv')
-df
-
-
-# In[9]:
-
-
-from sklearn.impute import SimpleImputer
 
 methods = {
     'Car': 'mean',  
@@ -46,63 +35,28 @@ methods = {
     'BuildingArea': 'mean'
 }
 
+
 def simple_imputer(df, methods:Dict[str, str]):
     for column, method in methods.items():
         mean_imputer = SimpleImputer(missing_values=np.nan, strategy=method)
         df[[column]] = mean_imputer.fit_transform(df[[column]])
         return df
-    
+
+
 df_mean = simple_imputer(df, methods)
 
-
-# In[14]:
-
-
-from sklearn.impute import KNNImputer
 
 df_knn = df
 
 impt = KNNImputer()
 df_knn[['BuildingArea', 'YearBuilt', 'Car']] = impt.fit_transform(df[['BuildingArea', 'YearBuilt', 'Car']])
 
-df_knn
-
-
-# In[ ]:
-
-
-
-
-
-# In[22]:
-
-
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_absolute_error
-from sklearn.ensemble import RandomForestRegressor
 
 X = df_knn[['Car', 'BuildingArea', 'Distance', 'Bathroom']]
 y = df_knn['Price']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
 
-rf = RandomForestRegressor(n_estimators = 500, random_state = 42)
+rf = RandomForestRegressor(n_estimators=500, random_state=42)
 rf.fit(X_train, y_train)
-#y_pred = rf.predict(X_test)
 rf.score(X_test, y_test)
-
-#result = mean_absolute_error(y_test, y_pred)
-#result
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-

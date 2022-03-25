@@ -57,6 +57,13 @@ y = df_knn['Price']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
 
-rf = RandomForestRegressor(n_estimators=500, random_state=42)
-rf.fit(X_train, y_train)
-rf.score(X_test, y_test)
+
+def score_dataset(X_train, X_test, y_train, y_test):
+    rf = RandomForestRegressor(n_estimators=500, random_state=42)
+    rf.fit(X_train, y_train)
+    preds = rf.predict(X_test)
+    #rf.score(X_test, y_test)
+    return mean_absolute_error(y_test, preds)
+
+
+result = score_dataset(X_train, X_test, y_train, y_test)

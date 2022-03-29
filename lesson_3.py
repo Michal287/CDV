@@ -54,10 +54,10 @@ def lesson_3():
         'BuildingArea': 'mean'
     }
 
-    # Input by mean
+    # Input value by mean
     df_mean = simple_imputer(df, methods)
 
-    # Input by model knn
+    # Input value by model knn
     df_knn = df
     df_knn[['BuildingArea', 'YearBuilt', 'Car']] = knn_imputer(df[['BuildingArea', 'YearBuilt', 'Car']])
 

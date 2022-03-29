@@ -41,6 +41,17 @@ def modified_z_score_outlier(column: pd.DataFrame) -> bool:
 
 
 def log_transform(column: pd.DataFrame) -> bool:
+    """
+
+    Log every value in colum
+    Check is value is equal 0 than log
+
+    :param column:
+
+    :return:
+
+    Bool if Log is None return False else True
+    """
     return column.map(lambda x: 0 if x == 0 else np.log10(x)) == None
 
 
@@ -53,12 +64,22 @@ def score_dataset(X_train: pd.DataFrame, X_test: pd.DataFrame, y_train: pd.DataF
 
 def knn_imputer(df: pd.DataFrame) -> pd.DataFrame:
     knn = KNNImputer()
-    knn.fit(df)
-    return knn.transform(df)
+    return knn.fit_transform(df)
 
 
 def outliers_output(df_copy: pd.DataFrame, outliers_methods_dict: Dict[str, Callable]):
+    """
 
+    1. Print method name
+    2. Copy dataframe
+    3. Sum outliers then print
+    4. Remove outliers
+    5. Split data as test and trening
+    6. Use score_dataset to return mean_absolute_error
+
+    :param df_copy:
+    :param outliers_methods_dict:
+    """
     for method_name, method in outliers_methods_dict.items():
 
         print("\nRunning method: ", method_name)
@@ -80,6 +101,17 @@ def outliers_output(df_copy: pd.DataFrame, outliers_methods_dict: Dict[str, Call
 
 
 def lesson_4():
+    """
+    1. Select cols to import
+    2. Select types of cols to import
+    3. Import data
+    4. Sum nulls values
+    5. Input value to empty fields by knn
+    6. Make histogram for every column
+    7. Show 3 plot bar
+    8. Analyzes methods of removing outliers
+    """
+
     # Select columns to import
     col_name = ['Price', 'Rooms', 'Car']
 

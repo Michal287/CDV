@@ -54,10 +54,10 @@ def lesson_3():
         'BuildingArea': 'mean'
     }
 
-    # Uzupełnianie średnią
+    # Input by mean
     df_mean = simple_imputer(df, methods)
 
-    # Uzupełnianie najbliższymi kumplami
+    # Input by model knn
     df_knn = df
     df_knn[['BuildingArea', 'YearBuilt', 'Car']] = knn_imputer(df[['BuildingArea', 'YearBuilt', 'Car']])
 

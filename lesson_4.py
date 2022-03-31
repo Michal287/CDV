@@ -43,7 +43,7 @@ def modified_z_score_outlier(column: pd.DataFrame) -> bool:
 def log_transform(column: pd.DataFrame) -> bool:
     """
     Log every value in colum
-    Check is value is equal 0 than log
+    Check is value is equal 0 else log
 
     :param column:
 

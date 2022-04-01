@@ -1,12 +1,13 @@
 import altair as alt
 import seaborn as sns
+import matplotlib.pyplot as plt
 
 
 def main():
     penguins = sns.load_dataset("penguins")
     df = sns.load_dataset("penguins")
     sns.pairplot(df, hue="species")
-    df.head()
+    plt.show()
 
     chart = alt.Chart(penguins).mark_circle(color="black").encode(
         alt.X('bill_length_mm', scale=alt.Scale(zero=False)),
@@ -26,10 +27,9 @@ def main():
         .encode(alt.Color("species:N"))
         for order in degree_list
     ]
+    chart.save('../Results/lesson2_1.html')
 
-    chart.save('/home/michal/Pulpit/Results/res.html')
-
-    alt.layer(chart.interactive(), *polynomial_fit)
+    alt.layer(chart.interactive(), *polynomial_fit).save('../Results/lesson2_2.html')
 
 
 if __name__=='__main__':

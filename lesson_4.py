@@ -90,7 +90,7 @@ def outliers_output(df_copy: pd.DataFrame, outliers_methods_dict: Dict[str, Call
 
         df = df[df.apply(lambda x: ~method(x))].dropna()
 
-        print(df)
+        #print(df)
 
         X = df[['Car', 'Rooms']]
         y = df[['Price']]

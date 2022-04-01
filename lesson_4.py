@@ -42,9 +42,8 @@ def modified_z_score_outlier(column: pd.DataFrame) -> bool:
 
 def log_transform(column: pd.DataFrame) -> bool:
     """
-
     Log every value in colum
-    Check is value is equal 0 than log
+    Check is value is equal 0 else log
 
     :param column:
 
@@ -52,6 +51,7 @@ def log_transform(column: pd.DataFrame) -> bool:
 
     Bool if Log is None return False else True
     """
+    
     return column.map(lambda x: 0 if x == 0 else np.log10(x)) == None
 
 
@@ -69,7 +69,6 @@ def knn_imputer(df: pd.DataFrame) -> pd.DataFrame:
 
 def outliers_output(df_copy: pd.DataFrame, outliers_methods_dict: Dict[str, Callable]):
     """
-
     1. Print method name
     2. Copy dataframe
     3. Sum outliers then print
@@ -80,6 +79,7 @@ def outliers_output(df_copy: pd.DataFrame, outliers_methods_dict: Dict[str, Call
     :param df_copy:
     :param outliers_methods_dict:
     """
+    
     for method_name, method in outliers_methods_dict.items():
 
         print("\nRunning method: ", method_name)

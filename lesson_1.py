@@ -35,7 +35,6 @@ def main():
     axs[1, 0].scatter(x, y2)
     axs[0, 1].scatter(x, y3)
     axs[1, 1].scatter(x4, y4)
-
     plt.show()
 
 

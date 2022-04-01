@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 
 
 def main():
+
     penguins = sns.load_dataset("penguins")
     df = sns.load_dataset("penguins")
     sns.pairplot(df, hue="species")

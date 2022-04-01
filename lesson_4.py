@@ -74,7 +74,6 @@ def outliers_output(df_copy: pd.DataFrame, outliers_methods_dict: Dict[str, Call
     3. Sum outliers then print
     4. Remove outliers
     5. Split data as test and trening
-    6. Use score_dataset to return mean_absolute_error
 
     :param df_copy:
     :param outliers_methods_dict:
